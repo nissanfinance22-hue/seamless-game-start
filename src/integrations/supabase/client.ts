@@ -31,12 +31,27 @@ function makeQuery(list: boolean): AnyRecord {
   return new Proxy({} as AnyRecord, handler);
 }
 
-const channelStub: AnyRecord = {
+type OfflineChannel = {
+  on: (
+    type: string,
+    filter: Record<string, unknown>,
+    callback: (payload: { payload?: unknown; new?: unknown; old?: unknown }) => void,
+  ) => OfflineChannel;
+  subscribe: (callback?: (status: string) => void | Promise<void>) => OfflineChannel;
+  send: (args: unknown) => Promise<string>;
+  unsubscribe: () => Promise<string>;
+  track: (args: unknown) => Promise<string>;
+  untrack: () => Promise<string>;
+  presenceState: <T = unknown>() => Record<string, T[]>;
+};
+
+const channelStub: OfflineChannel = {
   on: () => channelStub,
   subscribe: () => channelStub,
   send: async () => "ok",
   unsubscribe: async () => "ok",
   track: async () => "ok",
+  untrack: async () => "ok",
   presenceState: () => ({}),
 };
 
@@ -63,8 +78,8 @@ const offlineClient = {
   auth: authStub,
   from: () => makeQuery(true),
   rpc: async () => ({ data: null, error: null }),
-  channel: () => channelStub,
-  removeChannel: async () => "ok",
+  channel: (_name?: string, _opts?: unknown): OfflineChannel => channelStub,
+  removeChannel: async (_ch?: OfflineChannel) => "ok",
   removeAllChannels: async () => "ok",
   functions: { invoke: async () => ({ data: null, error: null }) },
   storage: { from: () => ({ upload: async () => ({ data: null, error: null }) }) },
