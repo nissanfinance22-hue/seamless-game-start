@@ -134,8 +134,8 @@ const AVATAR_PRESETS: { id: string; name: string; hue: number; sheet: string }[]
 ];
 import mapForestAsset from "@/assets/map-forest.png.asset.json";
 const mapForest = mapForestAsset.url;
-import mapVillageAsset from "@/assets/map-village.webp.asset.json";
-const mapVillage = mapVillageAsset.url;
+import mapCidadeAsset from "@/assets/cidade-principal.png.asset.json";
+const mapVillage = mapCidadeAsset.url;
 import mapRoute2Asset from "@/assets/map-route2.webp.asset.json";
 const mapRoute2 = mapRoute2Asset.url;
 import mapRoute3Asset from "@/assets/map-route3.png.asset.json";
@@ -898,7 +898,7 @@ function professionGreeting(prof: Profession | undefined, name: string): string 
 }
 
 // ===== ZONAS SEGURAS (sem spawn de pokemon selvagem) =====
-const NO_SPAWN_MAPS: ReadonlyArray<string> = ["village", "pkmart", "pkc", "labo", "viridian"];
+const NO_SPAWN_MAPS: ReadonlyArray<string> = ["pkmart", "pkc", "labo", "viridian"];
 const canSpawnHere = (m: string) => !NO_SPAWN_MAPS.includes(m);
 
 // ===== NPCs DE QUEST =====
@@ -1068,14 +1068,10 @@ function buildGreet(base: QuestBase, q: QuestInstance, name: string): string {
 
 const MAPS = {
   village: {
-    name: "PORTO FLORIDO", img: mapVillage, w: 1536, h: 1024, requiredLevel: 1,
-    spawn: { x: 1020, y: 620, dir: "up" as Dir },
-    portals: [
-      { x: 700, y: 940, w: 140, h: 70, to: "forest" as const, spawn: { x: 600, y: 280, dir: "down" as Dir }, label: "→ ROUTE 1" },
-      { x: 642, y: 98, w: 140, h: 70, to: "palletRoute" as const, spawn: { x: 420, y: 1760, dir: "up" as Dir }, label: "↑ ROTA DE PALLET" },
-      { x: 208, y: 276, w: 100, h: 50, to: "pkc" as const, spawn: { x: 450, y: 418, dir: "down" as Dir }, label: "✚ PK CENTER" },
-    ],
-    spawnAreas: [{ x: 760, y: 540 }, { x: 460, y: 380 }, { x: 1080, y: 360 }, { x: 380, y: 760 }, { x: 980, y: 780 }, { x: 660, y: 880 }],
+    name: "CIDADE PRINCIPAL", img: mapVillage, w: 1774, h: 887, requiredLevel: 1,
+    spawn: { x: 690, y: 380, dir: "down" as Dir },
+    portals: [],
+    spawnAreas: [{ x: 300, y: 372 }, { x: 690, y: 160 }, { x: 690, y: 700 }, { x: 1150, y: 372 }, { x: 1500, y: 372 }, { x: 940, y: 200 }],
   },
   forest: {
     name: "ROUTE 1", img: mapForest, w: 1219, h: 1290, requiredLevel: 1,
@@ -1217,7 +1213,7 @@ const MAPS = {
   },
 };
 type MapId = keyof typeof MAPS;
-const MAP_IDS: MapId[] = ["village", "forest", "route2", "route3", "forestCave", "cave1", "cave2", "map23", "palletRoute", "viridian", "route22", "victoryRoad", "florestaSecreta", "desert", "eliteRoute", "veneno", "pkmart", "pkc", "labo"];
+const MAP_IDS: MapId[] = ["village"];
 
 const ZOOM_LEVELS = [0.5, 0.7, 1] as const;
 
@@ -1492,14 +1488,14 @@ function Index() {
 // Constrói o save inicial para um treinador recém-criado, com a recompensa
 // de primeiro acesso (50 pokébolas de evento, 50 poções de evento, 1 ovo raro).
 function buildFirstTimeSave(identity: { id: string; name: string }): SaveState {
-  const m = MAPS.labo;
+  const m = MAPS.village;
   return {
     identity: { id: identity.id, name: identity.name },
     // Sem starter real — o ovo raro é o starter do jogador. Mantemos um valor
     // por compatibilidade com saves antigos.
     starter: "charmander",
     profession: undefined,
-    mapId: "labo",
+    mapId: "village",
     pos: { x: m.spawn.x, y: m.spawn.y },
     dir: m.spawn.dir,
     gold: 0, crystal: 0,
