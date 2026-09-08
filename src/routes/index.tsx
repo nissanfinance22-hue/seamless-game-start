@@ -3694,26 +3694,14 @@ function Game({ initial, onReset }: { initial: SaveState; onReset: () => void })
               alt={guild.element}
               className="pixelated"
               title={`Guilda: ${guild.name}`}
-              style={{ width: 18, height: 18, marginRight: 4, verticalAlign: "middle", filter: "drop-shadow(0 0 3px rgba(0,0,0,0.6))" }}
+              style={{ width: 16, height: 16, marginRight: 4, verticalAlign: "middle" }}
             />
           )}
           <span className="nm">{identity.name.toUpperCase()}</span>
           <span className="pl">👥 {playersHere.length + 1}</span>
           <span
+            className={`hud-chip${energy < ENERGY_TREE_COST ? " low" : ""}`}
             title={`Energia ${energy}/${ENERGY_MAX} · +10 por hora · custa ${ENERGY_TREE_COST} por árvore`}
-            style={{
-              marginLeft: 6,
-              padding: "1px 6px",
-              borderRadius: 999,
-              background: energy < ENERGY_TREE_COST ? "linear-gradient(90deg,#7f1d1d,#b91c1c)" : "linear-gradient(90deg,#1e3a8a,#2563eb)",
-              color: energy < ENERGY_TREE_COST ? "#fecaca" : "#bfdbfe",
-              fontSize: 9,
-              fontWeight: 800,
-              letterSpacing: 0.5,
-              border: `1px solid ${energy < ENERGY_TREE_COST ? "rgba(248,113,113,0.55)" : "rgba(96,165,250,0.55)"}`,
-              boxShadow: energy >= ENERGY_MAX ? "0 0 8px rgba(96,165,250,0.6)" : undefined,
-              whiteSpace: "nowrap",
-            }}
           >⚡ {energy}/{ENERGY_MAX}</span>
         </div>
         <div className="xp-bar">
