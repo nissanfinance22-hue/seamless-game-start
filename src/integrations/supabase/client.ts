@@ -85,5 +85,10 @@ const offlineClient = {
   storage: { from: () => ({ upload: async () => ({ data: null, error: null }) }) },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const supabase = offlineClient as any;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+type OfflineClient = Omit<typeof offlineClient, "from" | "rpc"> & {
+  from: (table: string) => any;
+  rpc: (fn: string, args?: unknown) => Promise<any>;
+};
+
+export const supabase = offlineClient as unknown as OfflineClient;
