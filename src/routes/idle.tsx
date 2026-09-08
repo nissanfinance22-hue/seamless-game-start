@@ -1105,7 +1105,7 @@ function IdlePage() {
     ch.on("presence", { event: "sync" }, applyState);
     ch.on("presence", { event: "join" }, applyState);
     ch.on("presence", { event: "leave" }, applyState);
-    ch.on("broadcast", { event: "pos" }, (payload) => {
+    ch.on("broadcast", { event: "pos" }, (payload: { payload?: unknown }) => {
       const p = payload.payload as RemotePlayer;
       if (!p || p.id === meId) return;
       setRemotePlayers((prev) => {
@@ -1114,7 +1114,7 @@ function IdlePage() {
       });
     });
     const trackNow = () => ch.track(payloadNow());
-    ch.subscribe(async (status) => {
+    ch.subscribe(async (status: string) => {
       if (status === "SUBSCRIBED") {
         await trackNow();
       }
@@ -1151,13 +1151,13 @@ function IdlePage() {
   useEffect(() => {
     if (!identity?.id) return;
     const ch = supabase.channel("rubym-captures-global");
-    ch.on("broadcast", { event: "capture" }, (payload) => {
+    ch.on("broadcast", { event: "capture" }, (payload: { payload?: unknown }) => {
       const p = payload.payload as { id: string; name: string; sp: string; rarity: string; chancePct: number };
       if (!p || p.id === identity.id) return;
       const spName = String(p.sp).replace(/_/g, " ").toUpperCase();
       pushChat(`🌍 ${p.name} capturou ${spName} (${p.rarity} · ${p.chancePct.toFixed(1)}%)`, "cap");
     });
-    ch.on("broadcast", { event: "say" }, (payload) => {
+    ch.on("broadcast", { event: "say" }, (payload: { payload?: unknown }) => {
       const p = payload.payload as { id: string; name: string; text: string };
       if (!p || p.id === identity.id) return;
       const safe = String(p.text).slice(0, 140);

@@ -141,7 +141,7 @@ export type PartyBroadcastEvent =
 
 export function subscribePartyChannel(partyId: string, onEvent: (e: PartyBroadcastEvent) => void): RealtimeChannel {
   const ch = supabase.channel(`party-bus-${partyId}`, { config: { broadcast: { self: false } } });
-  ch.on("broadcast", { event: "msg" }, (payload) => {
+  ch.on("broadcast", { event: "msg" }, (payload: { payload?: unknown }) => {
     const data = payload.payload as PartyBroadcastEvent;
     if (data) onEvent(data);
   });

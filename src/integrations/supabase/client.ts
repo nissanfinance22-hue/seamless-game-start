@@ -8,6 +8,7 @@
  * party, save na nuvem) ficam simplesmente inativos.
  */
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type AnyRecord = Record<string, unknown>;
 
 const emptyResult = { data: null, error: null, count: 0, status: 200, statusText: "OK" };
@@ -56,8 +57,8 @@ const channelStub: OfflineChannel = {
 };
 
 const authStub = {
-  getSession: async () => ({ data: { session: null }, error: null }),
-  getUser: async () => ({ data: { user: null }, error: null }),
+  getSession: async (): Promise<{ data: { session: any }; error: null }> => ({ data: { session: null }, error: null }),
+  getUser: async (): Promise<{ data: { user: any }; error: null }> => ({ data: { user: null }, error: null }),
   onAuthStateChange: () => ({
     data: { subscription: { unsubscribe: () => {} } },
   }),
@@ -78,17 +79,18 @@ const offlineClient = {
   auth: authStub,
   from: () => makeQuery(true),
   rpc: async () => ({ data: null, error: null }),
-  channel: (_name?: string, _opts?: unknown): OfflineChannel => channelStub,
-  removeChannel: async (_ch?: OfflineChannel) => "ok",
+  channel: (_name?: string, _opts?: unknown) => channelStub as any,
+  removeChannel: async (_ch?: any) => "ok",
   removeAllChannels: async () => "ok",
   functions: { invoke: async () => ({ data: null, error: null }) },
   storage: { from: () => ({ upload: async () => ({ data: null, error: null }) }) },
 };
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type OfflineClient = Omit<typeof offlineClient, "from" | "rpc"> & {
+type OfflineClient = Omit<typeof offlineClient, "from" | "rpc" | "channel"> & {
   from: (table: string) => any;
   rpc: (fn: string, args?: unknown) => Promise<any>;
+  channel: (name?: string, opts?: unknown) => any;
 };
 
 export const supabase = offlineClient as unknown as OfflineClient;
