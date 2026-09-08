@@ -618,7 +618,7 @@ type NpcDef = {
 };
 const NPCS: NpcDef[] = [
   {
-    id: "rt1-vera", mapId: "forest", x: 460, y: 600, sprite: npcGreenSprite,
+    id: "rt1-vera", mapId: "village", x: 560, y: 372, sprite: npcGreenSprite,
     name: "VERA", quote: "Hihi! Vamos duelar?",
     team: [
       { species: "caterpie", level: 6 },
@@ -628,7 +628,7 @@ const NPCS: NpcDef[] = [
     rewardGold: 400, rewardXp: 70,
   },
   {
-    id: "rt1-sarge", mapId: "forest", x: 820, y: 720, sprite: npcSoldierSprite,
+    id: "rt1-sarge", mapId: "village", x: 880, y: 372, sprite: npcSoldierSprite,
     name: "SARGENTO", quote: "Recruta, em posicao!",
     team: [
       { species: "sandslash", level: 9 },
@@ -638,7 +638,7 @@ const NPCS: NpcDef[] = [
     rewardGold: 700, rewardXp: 130,
   },
   {
-    id: "rt1-kenji", mapId: "forest", x: 360, y: 1000, sprite: npcFighterSprite,
+    id: "rt1-kenji", mapId: "village", x: 690, y: 560, sprite: npcFighterSprite,
     name: "KENJI", quote: "Mostre sua forca!",
     team: [
       { species: "pikachu", level: 10 },
@@ -648,7 +648,7 @@ const NPCS: NpcDef[] = [
     rewardGold: 900, rewardXp: 200,
   },
   {
-    id: "rt1-beni", mapId: "forest", x: 980, y: 380, sprite: npcNinjaBeni,
+    id: "rt1-beni", mapId: "village", x: 1000, y: 372, sprite: npcNinjaBeni,
     name: "NINJA BENI", quote: "Voce me viu? Devo treinar mais...",
     team: [
       { species: "arbok", level: 8 },
@@ -658,7 +658,7 @@ const NPCS: NpcDef[] = [
     rewardGold: 800, rewardXp: 160,
   },
   {
-    id: "rt2-chuck", mapId: "route2", x: 320, y: 700, sprite: npcChuck,
+    id: "rt2-chuck", mapId: "village", x: 1300, y: 372, sprite: npcChuck,
     name: "MESTRE CHUCK", quote: "Cem flexoes antes do cafe! Bora!",
     team: [
       { species: "hitmonchan", level: 14 },
@@ -737,13 +737,13 @@ const NPC_COOLDOWN_MS = 10 * 60 * 60 * 1000; // 10 horas entre revanches
 
 const EXTRA_NPCS: NpcDef[] = [
   {
-    id: "rt1-ash-story", mapId: "forest", x: 200, y: 300, sprite: npcOakSprite,
+    id: "rt1-ash-story", mapId: "village", x: 690, y: 120, sprite: npcOakSprite,
     name: "CURIOSO", quote: "Sabia que o Ash pegou um Caterpie aqui perto?",
     team: [{ species: "caterpie", level: 5 }],
     rewardGold: 100, rewardXp: 20,
   },
   {
-    id: "florido-jardinheiro", mapId: "village", x: 1140, y: 520, sprite: npcFloralSprite,
+    id: "florido-jardinheiro", mapId: "village", x: 760, y: 690, sprite: npcFloralSprite,
     name: "JARDINHEIRO", quote: "As flores de Porto Florido são as mais belas! Quer me ajudar a cuidar delas?",
     team: [{ species: "bulbasaur", level: 12 }, { species: "ivysaur", level: 18 }],
     rewardGold: 600, rewardXp: 120,
@@ -754,25 +754,25 @@ const EXTRA_NPCS: NpcDef[] = [
     }
   },
   {
-    id: "v-explorer", mapId: "village", x: 100, y: 100, sprite: npcStylistLucy,
+    id: "v-explorer", mapId: "village", x: 1120, y: 690, sprite: npcStylistLucy,
     name: "EXPLORADOR MAX", quote: "Este porto esconde segredos!",
     team: [{ species: "pidgey", level: 10 }, { species: "squirtle", level: 12 }],
     rewardGold: 500, rewardXp: 80,
   },
   {
-    id: "rocket-mafia-1", mapId: "forest", x: 1100, y: 1100, sprite: npcNinjaBeni,
+    id: "rocket-mafia-1", mapId: "village", x: 1250, y: 690, sprite: npcNinjaBeni,
     name: "RECRUTA ROCKET", quote: "Prepare-se para o encrenca!",
     team: [{ species: "arbok", level: 15, rarity: "rare" }],
     rewardGold: 1000, rewardXp: 150,
   },
   {
-    id: "collector-bia", mapId: "village", x: 400, y: 800, sprite: npcCheerleaders,
+    id: "collector-bia", mapId: "village", x: 620, y: 690, sprite: npcCheerleaders,
     name: "COLECIONADORA BIA", quote: "Olhe minha coleção de Jigglypuff!",
     team: [{ species: "jigglypuff", level: 18, rarity: "epic" }],
     rewardGold: 1500, rewardXp: 300,
   },
   {
-    id: "captain-navio", mapId: "palletRoute", x: 420, y: 1620, sprite: npcPilot,
+    id: "captain-navio", mapId: "village", x: 690, y: 780, sprite: npcPilot,
     name: "CAPITÃO NAVIO", quote: "Os mares de RubyMon escondem segredos…",
     team: [{ species: "squirtle", level: 20 }],
     rewardGold: 0, rewardXp: 0,
@@ -783,7 +783,7 @@ const EXTRA_NPCS: NpcDef[] = [
     },
   },
   {
-    id: "velho-mares", mapId: "forestCave", x: 400, y: 400, sprite: npcHiker,
+    id: "velho-mares", mapId: "village", x: 200, y: 372, sprite: npcHiker,
     name: "VELHO DOS MARES", quote: "Os mares ensinam o que livros não dizem…",
     team: [{ species: "tangela", level: 22 }],
     rewardGold: 0, rewardXp: 0,
@@ -794,7 +794,7 @@ const EXTRA_NPCS: NpcDef[] = [
     },
   },
   {
-    id: "kurt", mapId: "viridian", x: 820, y: 700, sprite: npcKurtSprite,
+    id: "kurt", mapId: "village", x: 430, y: 372, sprite: npcKurtSprite,
     name: "MESTRE KURT", quote: "Traga-me apricoms e farei pokébolas únicas…",
     team: [{ species: "tangela", level: 25 }],
     rewardGold: 0, rewardXp: 0,
@@ -805,7 +805,7 @@ const EXTRA_NPCS: NpcDef[] = [
     },
   },
   {
-    id: "mercador-mat", mapId: "route2", x: 700, y: 1100, sprite: npcGustavo,
+    id: "mercador-mat", mapId: "village", x: 940, y: 180, sprite: npcGustavo,
     name: "MERCADOR GUSTAVO", quote: "Lenha, ferro, óleo… 50 cristais cada!",
     team: [{ species: "snorlax", level: 24 }],
     rewardGold: 0, rewardXp: 0,
@@ -816,7 +816,7 @@ const EXTRA_NPCS: NpcDef[] = [
     },
   },
   {
-    id: "moranguinho", mapId: "viridian", x: 1128, y: 1126, sprite: npcMoranguinho,
+    id: "moranguinho", mapId: "village", x: 1150, y: 372, sprite: npcMoranguinho,
     name: "MORANGUINHO", quote: "Flores, morangos e um pouco de amor…",
     team: [{ species: "pidgey", level: 18 }],
     rewardGold: 0, rewardXp: 0,
@@ -827,7 +827,7 @@ const EXTRA_NPCS: NpcDef[] = [
     },
   },
   {
-    id: "botanist-yggdran", mapId: "route3", x: 572, y: 696, sprite: npcBotanistSprite,
+    id: "botanist-yggdran", mapId: "village", x: 1450, y: 372, sprite: npcBotanistSprite,
     name: "BOTÂNICO YGGDRAN", quote: "Cada árvore guarda um segredo. Deixe-me te contar os meus...",
     team: [{ species: "tangela", level: 20 }],
     rewardGold: 0, rewardXp: 0,
@@ -838,7 +838,7 @@ const EXTRA_NPCS: NpcDef[] = [
     },
   },
   {
-    id: "pescador-barbosa", mapId: "viridian", x: 520, y: 940, sprite: npcFishermanSprite,
+    id: "pescador-barbosa", mapId: "village", x: 1620, y: 760, sprite: npcFishermanSprite,
     name: "PESCADOR BARBOSA", quote: "Traga 30 Caterpie e ganhe a vara lendária!",
     team: [{ species: "psyduck", level: 18 }],
     rewardGold: 0, rewardXp: 0,
@@ -849,7 +849,7 @@ const EXTRA_NPCS: NpcDef[] = [
     },
   },
   {
-    id: "lab-oak", mapId: "labo", x: 700, y: 480, sprite: npcOakSprite,
+    id: "lab-oak", mapId: "village", x: 690, y: 300, sprite: npcOakSprite,
     name: "PROF. CARVALHO", quote: "Bem-vindo ao meu laboratório! Escolha um Pokémon inicial.",
     team: [{ species: "bulbasaur", level: 5 }],
     rewardGold: 0, rewardXp: 0,
@@ -1649,15 +1649,15 @@ function Game({ initial, onReset }: { initial: SaveState; onReset: () => void })
   type TreeNode = { id: string; mapId: MapId; x: number; y: number; kind?: TreeKind };
   const HARVEST_TREES: TreeNode[] = useMemo(() => [
     // Forest (Route 1)
-    { id: "tf1", mapId: "forest", x: 300, y: 460, kind: "strawberry" },
-    { id: "tf2", mapId: "forest", x: 540, y: 820 },
-    { id: "tf3", mapId: "forest", x: 760, y: 380, kind: "pink" },
-    { id: "tf4", mapId: "forest", x: 880, y: 940, kind: "lemon" },
-    { id: "tf5", mapId: "forest", x: 1080, y: 600 },
-    { id: "tf6", mapId: "forest", x: 420, y: 1100, kind: "pink" },
+    { id: "tf1", mapId: "village", x: 340, y: 300, kind: "strawberry" },
+    { id: "tf2", mapId: "village", x: 520, y: 300 },
+    { id: "tf3", mapId: "village", x: 900, y: 300, kind: "pink" },
+    { id: "tf4", mapId: "village", x: 1080, y: 300, kind: "lemon" },
+    { id: "tf5", mapId: "village", x: 1240, y: 300 },
+    { id: "tf6", mapId: "village", x: 600, y: 800, kind: "pink" },
     // Route 2
-    { id: "tr2a", mapId: "route2", x: 280, y: 460, kind: "lemon" },
-    { id: "tr2b", mapId: "route2", x: 720, y: 320 },
+    { id: "tr2a", mapId: "village", x: 860, y: 800, kind: "lemon" },
+    { id: "tr2b", mapId: "village", x: 1120, y: 800 },
     { id: "tr2c", mapId: "route2", x: 640, y: 980, kind: "strawberry" },
     { id: "tr2d", mapId: "route2", x: 920, y: 720, kind: "strawberry" },
     // Route 3
