@@ -388,133 +388,115 @@ html, body, #root {
   100% { transform: translateX(120vw) translateY(20px) rotate(8deg); opacity: 0; }
 }
 
-/* ===== Trainer HUD ===== */
+/* ===== Trainer HUD — estilo classico (GameBoy), simples e limpo ===== */
 .trainer-hud {
   position: relative;
   display: flex; align-items: center; gap: 8px;
-  padding: 6px 10px 6px 6px;
-  border-radius: 14px;
-  background: linear-gradient(180deg, #2a2620 0%, #15130f 100%);
-  border: 1px solid #3a352a;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.08),
-    inset 0 -2px 0 rgba(0,0,0,0.5),
-    0 2px 0 rgba(0,0,0,0.4),
-    0 0 0 1px rgba(0,0,0,0.4);
-  color: #e7d9a8;
+  padding: 5px 8px;
+  border-radius: 2px;
+  background: var(--gb-screen);
+  border: 2px solid var(--gb-darkest);
+  color: var(--gb-darkest);
   overflow: hidden;
-}
-.trainer-hud::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at 18% 0%, rgba(253,224,71,0.10), transparent 55%);
-  pointer-events: none;
 }
 .trainer-avatar {
   position: relative;
-  width: 34px; height: 34px;
-  border-radius: 10px;
-  background: linear-gradient(180deg, #c4cfa1, #88a06a);
-  border: 1px solid #0f1f0d;
-  box-shadow: inset 0 0 0 1px #fde04733, 0 1px 0 rgba(0,0,0,0.5);
+  width: 30px; height: 30px;
+  border-radius: 2px;
+  background: var(--gb-light);
+  border: 2px solid var(--gb-darkest);
   overflow: hidden;
   flex-shrink: 0;
 }
 .trainer-level-badge {
   position: absolute;
-  right: -4px; bottom: -4px;
-  min-width: 18px; height: 16px;
-  padding: 0 4px;
+  right: -2px; bottom: -2px;
+  min-width: 16px; height: 14px;
+  padding: 0 3px;
   display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(180deg, #fde047 0%, #f59e0b 100%);
-  color: #2a1700;
+  background: var(--gb-darkest);
+  color: var(--gb-lightest);
   font-size: 9px; font-weight: 700;
-  border-radius: 8px;
-  border: 1px solid #2a1700;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.5), 0 0 6px rgba(253,224,71,0.5);
+  border-radius: 2px;
   line-height: 1;
 }
 .trainer-info {
   flex: 1; min-width: 0;
-  display: flex; flex-direction: column; gap: 2px;
+  display: flex; flex-direction: column; gap: 3px;
 }
 .trainer-name-row {
   display: flex; align-items: center; justify-content: space-between;
   gap: 6px;
   font-size: 9px;
 }
-.trainer-name-row .nm { color: #fff8d6; letter-spacing: 0.6px; }
-.trainer-name-row .pl { color: #9bbc0f; opacity: 0.95; }
+.trainer-name-row .nm { color: var(--gb-darkest); letter-spacing: 0.6px; }
+.trainer-name-row .pl { color: var(--gb-dark); }
+
+/* Selo simples (energia e afins) no tom classico */
+.hud-chip {
+  margin-left: 6px;
+  padding: 1px 5px;
+  border-radius: 2px;
+  background: var(--gb-darkest);
+  color: var(--gb-lightest);
+  border: none;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.hud-chip.low {
+  background: var(--gb-lightest);
+  color: var(--gb-darkest);
+  box-shadow: inset 0 0 0 2px var(--gb-darkest);
+}
 
 .xp-bar {
   position: relative;
   height: 8px;
-  border-radius: 999px;
-  background: #0a0907;
-  border: 1px solid #3a352a;
+  border-radius: 2px;
+  background: var(--gb-lightest);
+  border: 2px solid var(--gb-darkest);
   overflow: hidden;
-  box-shadow: inset 0 1px 0 rgba(0,0,0,0.8);
 }
 .xp-bar-fill {
   position: absolute; inset: 0 auto 0 0;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #4ade80 0%, #22c55e 55%, #16a34a 100%);
-  box-shadow: 0 0 8px rgba(74,222,128,0.7), inset 0 1px 0 rgba(255,255,255,0.5);
-  transition: width 0.6s cubic-bezier(.2,.9,.3,1.1);
-}
-.xp-bar-fill::after {
-  content: "";
-  position: absolute; top: 0; bottom: 0; right: 0;
-  width: 22px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
-  filter: blur(2px);
-  animation: xp-shimmer 1.8s linear infinite;
-}
-@keyframes xp-shimmer {
-  0%   { transform: translateX(-180%); }
-  100% { transform: translateX(180%); }
+  background: var(--gb-dark);
+  transition: width 0.3s linear;
 }
 .xp-bar-text {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  font-size: 7px; color: #fff;
+  font-size: 7px; color: var(--gb-darkest);
   letter-spacing: 0.5px;
-  text-shadow: 0 1px 0 #000, 0 0 2px #000;
   pointer-events: none;
 }
 
-.trainer-hud.lvlup {
-  animation: hud-lvlup 1.4s ease-out;
-}
+.trainer-hud.lvlup { animation: hud-lvlup 0.6s steps(2) 2; }
 @keyframes hud-lvlup {
-  0%   { box-shadow: 0 0 0 rgba(253,224,71,0), inset 0 1px 0 rgba(255,255,255,0.08); transform: scale(1); }
-  20%  { box-shadow: 0 0 24px rgba(253,224,71,0.9), 0 0 60px rgba(245,158,11,0.5); transform: scale(1.03); }
-  100% { box-shadow: 0 0 0 rgba(253,224,71,0); transform: scale(1); }
+  0%, 100% { background: var(--gb-screen); }
+  50% { background: var(--gb-lightest); }
 }
-.trainer-level-badge.lvlup {
-  animation: badge-pop 0.9s ease-out;
-}
+.trainer-level-badge.lvlup { animation: badge-pop 0.6s steps(2) 2; }
 @keyframes badge-pop {
-  0%   { transform: scale(1) rotate(0); }
-  35%  { transform: scale(1.55) rotate(-8deg); }
-  70%  { transform: scale(0.95) rotate(4deg); }
-  100% { transform: scale(1) rotate(0); }
+  0%, 100% { background: var(--gb-darkest); color: var(--gb-lightest); }
+  50% { background: var(--gb-lightest); color: var(--gb-darkest); }
 }
 .lvlup-burst {
-  position: absolute; left: 8px; top: 50%;
+  position: absolute; right: 8px; top: 50%;
   transform: translateY(-50%);
-  font-size: 9px; font-weight: 700;
-  color: #fde047;
-  text-shadow: 0 0 6px #f59e0b, 0 0 12px #fde047;
+  font-size: 8px; font-weight: 700;
+  color: var(--gb-darkest);
   pointer-events: none;
-  animation: lvlup-burst 1.4s ease-out forwards;
+  animation: lvlup-burst 1.2s steps(3) forwards;
 }
 @keyframes lvlup-burst {
-  0%   { opacity: 0; transform: translateY(-50%) scale(0.6); }
-  20%  { opacity: 1; transform: translateY(-50%) scale(1.1); }
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
   80%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(40px, -50%) scale(1); }
+  100% { opacity: 0; }
 }
+
 
 
 /* ===== Animated battle background (elegant, isolated — does NOT tint sprites) ===== */
