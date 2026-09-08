@@ -1093,7 +1093,7 @@ function IdlePage() {
       } catch { /* ignore */ }
     };
     const applyState = () => {
-      const state = ch.presenceState<RemotePlayer>();
+      const state = ch.presenceState() as Record<string, RemotePlayer[]>;
       const list: RemotePlayer[] = [];
       for (const key of Object.keys(state)) {
         if (key === meId) continue;
