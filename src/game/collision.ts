@@ -42,13 +42,16 @@ function pixelWalk(mapId: CollisionMapId, r: number, g: number, b: number, x = 0
   const blueDom = b > r + 25 && b > g + 15; // água
 
   switch (mapId) {
-    // ---- Porto Florido (mockup 4) ----
+    // ---- Cidade Principal (mapa único) ----
     case "village":
     case "town": {
-      // Caminho de tijolo bege/laranja queimado. Bloqueia grama, água, casas escuras.
-      const brick = r > 110 && g > 70 && b < 160 && r > b - 5 && r >= g - 10;
-      return brick && !greenDom && !blueDom && l > 0.28 && l < 0.9;
+      // Ruas de pedra clara (branco/bege acinzentado). Bloqueia grama,
+      // cercas, água e telhados.
+      const light = min > 150 && max - min < 60;
+      const stone = light && !greenDom && !blueDom;
+      return stone && l > 0.55;
     }
+
     // ---- Route 1 / Route 2 (florestas com trilha + rio) ----
     case "forest":
     case "meadow":
